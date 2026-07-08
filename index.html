@@ -18,9 +18,12 @@
     --text-dim:#8B93A1;
     --text-faint:#5B6472;
     --amber:#E8A33D;
+    --cyan:#57B6C9;
+    --blue:#6EA8E0;
+    --purple:#C77DDB;
+    --teal:#4FBEA8;
     --green:#4FBE85;
     --red:#E2574C;
-    --cyan:#57B6C9;
     --mono: 'JetBrains Mono', monospace;
     --sans: 'Inter', sans-serif;
   }
@@ -38,10 +41,8 @@
     -webkit-font-smoothing:antialiased;
   }
   ::selection{background:var(--amber);color:#0E1116;}
-
   a{color:inherit;}
-
-  .wrap{max-width:920px;margin:0 auto;padding:0 24px;}
+  .wrap{max-width:960px;margin:0 auto;padding:0 24px;}
 
   /* ---------- header / hero ---------- */
   header.hero{
@@ -76,227 +77,155 @@
     line-height:1.15;
   }
   h1 span{color:var(--text-faint);}
-  .hero p.lede{
-    color:var(--text-dim);
-    font-size:16px;
-    max-width:56ch;
-    margin:0;
-  }
+  .hero p.lede{color:var(--text-dim);font-size:16px;max-width:58ch;margin:0;}
 
   /* ---------- section shell ---------- */
-  section{padding:64px 0;border-bottom:1px solid var(--border-soft);}
+  section{padding:60px 0;border-bottom:1px solid var(--border-soft);}
   section:last-of-type{border-bottom:none;}
-  .section-head{margin-bottom:32px;}
+  .section-head{margin-bottom:28px;}
   .section-head .tag{
-    font-family:var(--mono);
-    font-size:11px;
-    letter-spacing:.12em;
-    text-transform:uppercase;
-    color:var(--text-faint);
-    margin-bottom:8px;
+    font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--text-faint);margin-bottom:8px;
   }
-  .section-head h2{
-    font-family:var(--mono);
-    font-size:22px;
-    margin:0 0 8px;
-    font-weight:700;
-  }
-  .section-head p{color:var(--text-dim);margin:0;max-width:60ch;font-size:14.5px;}
-
-  /* ---------- pattern strip ---------- */
-  .pattern-strip{
-    font-family:var(--mono);
-    font-size:clamp(15px,3vw,22px);
-    font-weight:700;
-    display:flex;
-    flex-wrap:wrap;
-    gap:8px;
-    align-items:center;
-    margin:20px 0 0;
-  }
-  .pattern-strip .seg{
-    padding:8px 14px;
-    border-radius:6px;
-    border:1px solid var(--border);
-    background:var(--panel);
-  }
-  .pattern-strip .seg.tipo{color:var(--amber);border-color:rgba(232,163,61,.35);}
-  .pattern-strip .seg.nome{color:var(--cyan);border-color:rgba(87,182,201,.35);}
-  .pattern-strip .seg.vlan{color:var(--green);border-color:rgba(79,190,133,.35);}
-  .pattern-strip .sep{color:var(--text-faint);font-weight:400;}
+  .section-head h2{font-family:var(--mono);font-size:21px;margin:0 0 8px;font-weight:700;}
+  .section-head p{color:var(--text-dim);margin:0;max-width:62ch;font-size:14.5px;}
 
   /* ---------- builder ---------- */
   .builder{
     background:var(--panel);
     border:1px solid var(--border);
-    border-radius:12px;
-    padding:24px;
-    margin-top:24px;
+    border-radius:14px;
+    padding:26px;
+    margin-top:22px;
   }
-  .builder-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:14px;
-  }
+  .builder-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+  .builder-grid.cols4{grid-template-columns:repeat(4,1fr);}
+  .builder-grid.cols5{grid-template-columns:repeat(5,1fr);}
+  @media(max-width:760px){.builder-grid.cols4,.builder-grid.cols5{grid-template-columns:1fr 1fr;}}
   @media(max-width:640px){.builder-grid{grid-template-columns:1fr;}}
+  @media(max-width:480px){.builder-grid.cols4,.builder-grid.cols5{grid-template-columns:1fr;}}
+
   .field label{
-    display:block;
-    font-family:var(--mono);
-    font-size:11px;
-    letter-spacing:.08em;
-    text-transform:uppercase;
-    color:var(--text-faint);
-    margin-bottom:7px;
+    display:block;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--text-faint);margin-bottom:7px;
   }
   .field select, .field input{
-    width:100%;
-    background:var(--bg-2);
-    border:1px solid var(--border);
-    color:var(--text);
-    font-family:var(--mono);
-    font-size:14px;
-    padding:10px 12px;
-    border-radius:7px;
-    outline:none;
+    width:100%;background:var(--bg-2);border:1px solid var(--border);color:var(--text);
+    font-family:var(--mono);font-size:14px;padding:10px 12px;border-radius:8px;outline:none;
     transition:border-color .15s ease;
   }
   .field select:focus, .field input:focus{border-color:var(--amber);}
   .field input::placeholder{color:var(--text-faint);}
+  .field.is-disabled select{opacity:.3;cursor:not-allowed;}
 
-  /* the "cable label" output */
+  /* ---------- output: rack-label chips ---------- */
   .label-tag{
-    margin-top:20px;
+    margin-top:22px;
     display:flex;
     align-items:stretch;
+    gap:0;
     background:var(--bg-2);
     border:1px solid var(--border);
-    border-radius:8px;
+    border-radius:10px;
     overflow:hidden;
   }
   .label-tag .punch{
-    width:36px;
-    flex-shrink:0;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:var(--panel-2);
-    border-right:1px dashed var(--border);
-    position:relative;
+    width:34px;flex-shrink:0;display:flex;align-items:center;justify-content:center;
+    background:var(--panel-2);border-right:1px dashed var(--border);
   }
   .label-tag .punch::before{
-    content:'';
-    width:10px;height:10px;border-radius:50%;
-    background:var(--bg);
-    border:1px solid var(--border);
+    content:'';width:9px;height:9px;border-radius:50%;background:var(--bg);border:1px solid var(--border);
   }
-  .label-tag .out{
+  .chips{
     flex:1;
-    padding:16px 18px;
-    font-family:var(--mono);
-    font-size:clamp(14px,2.6vw,18px);
-    font-weight:700;
-    letter-spacing:.02em;
-    color:var(--text);
     display:flex;
-    align-items:center;
-    word-break:break-all;
+    align-items:flex-end;
+    flex-wrap:wrap;
+    gap:0;
+    padding:18px 20px;
   }
-  .label-tag .out .hl-tipo{color:var(--amber);}
-  .label-tag .out .hl-nome{color:var(--cyan);}
-  .label-tag .out .hl-vlan{color:var(--green);}
-  .label-tag .out .hl-mut{color:var(--text-faint);}
-  .copy-btn{
-    flex-shrink:0;
-    border:none;
-    border-left:1px solid var(--border);
-    background:var(--panel-2);
-    color:var(--text-dim);
+  .chip{display:flex;flex-direction:column;align-items:center;}
+  .chip-box{
     font-family:var(--mono);
-    font-size:12px;
-    letter-spacing:.06em;
+    font-weight:700;
+    font-size:clamp(13px,2.2vw,16px);
+    padding:8px 13px;
+    border-radius:7px;
+    border:1px solid;
+    white-space:nowrap;
+    background:var(--panel);
+  }
+  .chip-cap{
+    font-family:var(--mono);
+    font-size:9px;
+    letter-spacing:.08em;
     text-transform:uppercase;
-    padding:0 18px;
-    cursor:pointer;
-    transition:.15s ease;
+    color:var(--text-faint);
+    margin-top:7px;
+  }
+  .chip-sep{
+    align-self:center;
+    color:var(--text-faint);
+    font-family:var(--mono);
+    font-size:16px;
+    padding:0 6px;
+    margin-top:-16px;
+  }
+  .c-amber{color:var(--amber);border-color:rgba(232,163,61,.35);}
+  .c-cyan{color:var(--cyan);border-color:rgba(87,182,201,.35);}
+  .c-blue{color:var(--blue);border-color:rgba(110,168,224,.35);}
+  .c-purple{color:var(--purple);border-color:rgba(199,125,219,.35);}
+  .c-teal{color:var(--teal);border-color:rgba(79,190,168,.35);}
+  .c-green{color:var(--green);border-color:rgba(79,190,133,.35);}
+
+  .copy-btn{
+    flex-shrink:0;border:none;border-left:1px solid var(--border);background:var(--panel-2);
+    color:var(--text-dim);font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;
+    padding:0 20px;cursor:pointer;transition:.15s ease;
   }
   .copy-btn:hover{background:var(--border-soft);color:var(--text);}
   .copy-btn.copied{color:var(--green);}
 
+  .note{font-family:var(--sans);font-size:12.5px;color:var(--text-faint);margin-top:14px;}
+  .note code{font-family:var(--mono);background:var(--bg-2);border:1px solid var(--border);padding:1px 6px;border-radius:4px;color:var(--cyan);}
+
   /* ---------- type cards ---------- */
-  .cards{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:14px;
-    margin-top:24px;
-  }
-  @media(max-width:640px){.cards{grid-template-columns:1fr;}}
-  .card{
-    background:var(--panel);
-    border:1px solid var(--border);
-    border-radius:12px;
-    padding:20px;
-    position:relative;
-  }
-  .card .code{
-    font-family:var(--mono);
-    font-weight:800;
-    font-size:18px;
-    color:var(--amber);
-    margin-bottom:6px;
-  }
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:24px;}
+  @media(max-width:700px){.cards{grid-template-columns:1fr;}}
+  .card{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:20px;}
+  .card .code{font-family:var(--mono);font-weight:800;font-size:18px;color:var(--amber);margin-bottom:6px;}
   .card .desc{color:var(--text-dim);font-size:13.5px;margin-bottom:14px;min-height:36px;}
   .badge{
-    display:inline-flex;
-    align-items:center;
-    gap:6px;
-    font-family:var(--mono);
-    font-size:11px;
-    letter-spacing:.06em;
-    text-transform:uppercase;
-    padding:5px 10px;
-    border-radius:100px;
+    display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11px;
+    letter-spacing:.06em;text-transform:uppercase;padding:5px 10px;border-radius:100px;
   }
   .badge.ok{background:rgba(79,190,133,.12);color:var(--green);border:1px solid rgba(79,190,133,.3);}
   .badge.warn{background:rgba(226,87,76,.12);color:var(--red);border:1px solid rgba(226,87,76,.3);}
   .badge .dot{width:6px;height:6px;border-radius:50%;background:currentColor;}
 
-  /* ---------- rules list ---------- */
-  .rules{list-style:none;margin:24px 0 0;padding:0;display:flex;flex-direction:column;gap:14px;}
-  .rules li{
-    display:flex;
-    gap:14px;
-    padding:16px 18px;
-    background:var(--panel);
-    border:1px solid var(--border);
-    border-radius:10px;
-    font-size:14.5px;
-    color:var(--text-dim);
-  }
-  .rules li .n{
-    font-family:var(--mono);
-    color:var(--amber);
-    font-weight:700;
-    flex-shrink:0;
-  }
-  .rules li strong{color:var(--text);}
-  .rules code{
-    font-family:var(--mono);
-    background:var(--bg-2);
-    border:1px solid var(--border);
-    padding:1px 6px;
-    border-radius:4px;
-    color:var(--cyan);
-    font-size:.92em;
-  }
+  /* ---------- combo table ---------- */
+  .combo-table{margin-top:24px;border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+  .combo-row{display:grid;grid-template-columns:1.5fr 2.5fr;border-top:1px solid var(--border-soft);}
+  .combo-row:first-child{border-top:none;}
+  .combo-row.head{background:var(--panel-2);}
+  .combo-row.head .c{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-faint);}
+  .combo-row .c{padding:13px 16px;font-size:13.5px;color:var(--text-dim);display:flex;align-items:center;}
+  .combo-row .c:first-child{border-right:1px solid var(--border-soft);font-family:var(--mono);font-weight:700;color:var(--text);}
+  .combo-row .c:first-child .dono{color:var(--amber);}
+  .combo-row .c:first-child .servico{color:var(--purple);}
+  .combo-row .c:first-child .estado{color:var(--blue);}
 
-  footer{
-    padding:40px 0 60px;
-    text-align:center;
-    color:var(--text-faint);
-    font-family:var(--mono);
-    font-size:12px;
-    letter-spacing:.04em;
+  /* ---------- rules ---------- */
+  .rules{list-style:none;margin:24px 0 0;padding:0;display:flex;flex-direction:column;gap:12px;}
+  .rules li{
+    display:flex;gap:14px;padding:15px 18px;background:var(--panel);border:1px solid var(--border);
+    border-radius:10px;font-size:14px;color:var(--text-dim);
   }
+  .rules li .n{font-family:var(--mono);color:var(--amber);font-weight:700;flex-shrink:0;}
+  .rules li strong{color:var(--text);}
+  .rules code{font-family:var(--mono);background:var(--bg-2);border:1px solid var(--border);padding:1px 6px;border-radius:4px;color:var(--cyan);font-size:.92em;}
+
+  footer{padding:40px 0 60px;text-align:center;color:var(--text-faint);font-family:var(--mono);font-size:12px;letter-spacing:.04em;}
 </style>
 </head>
 <body>
@@ -304,8 +233,8 @@
 <header class="hero">
   <div class="wrap">
     <div class="eyebrow"><span class="dot"></span>REDE MPLS · BACKBONE HUAWEI</div>
-    <h1>Padrão de nomenclatura<br><span>VSI, VLAN e enlaces 100G</span></h1>
-    <p class="lede">Referência rápida para nomear VSI de serviço, descrição de VLAN e enlaces do backbone. Consulte antes de criar ou renomear qualquer objeto na rede.</p>
+    <h1>Padrão de nomenclatura<br><span>VSI, VLAN e enlaces do backbone</span></h1>
+    <p class="lede">Referência rápida para nomear VSI de serviço, description de VLAN, enlaces e portas. Consulte antes de criar ou renomear qualquer objeto na rede.</p>
   </div>
 </header>
 
@@ -313,63 +242,99 @@
   <div class="wrap">
     <div class="section-head">
       <div class="tag">01 · VSI e descrição de VLAN</div>
-      <h2>Padrão de 3 campos</h2>
-      <p>Usado para toda VSI de serviço (cliente, parceiro, transporte, gerência) e para a description correspondente na VLAN.</p>
-    </div>
-
-    <div class="pattern-strip">
-      <span class="seg tipo">TIPO</span><span class="sep">–</span><span class="seg nome">NOME</span><span class="sep">–</span><span class="seg vlan">VLAN</span>
+      <h2>Dono + nome + UF + serviço + vlan</h2>
+      <p>O nome vem logo depois do dono pra facilitar a busca no Huawei. UF identifica o estado. Serviço fica por último, só pra CLT e PARC.</p>
     </div>
 
     <div class="builder">
-      <div class="builder-grid">
+      <div class="builder-grid cols5">
         <div class="field">
-          <label for="vsiTipo">Tipo</label>
+          <label for="vsiTipo">Dono</label>
           <select id="vsiTipo">
             <option value="CLT">CLT — Cliente próprio</option>
             <option value="PARC">PARC — Parceiro</option>
-            <option value="TRP">TRP — Transporte interno</option>
             <option value="GER">GER — Gerência</option>
           </select>
         </div>
         <div class="field">
           <label for="vsiNome">Nome</label>
-          <input id="vsiNome" type="text" placeholder="ex: CONECT">
+          <input id="vsiNome" type="text" placeholder="ex: MADUREIRA">
+        </div>
+        <div class="field">
+          <label for="vsiEstado">UF</label>
+          <select id="vsiEstado">
+            <option value="RJ">RJ</option>
+            <option value="SP">SP</option>
+            <option value="ES">ES</option>
+          </select>
+        </div>
+        <div class="field" id="vsiServicoField">
+          <label for="vsiServico">Serviço</label>
+          <select id="vsiServico">
+            <option value="PPPOE">PPPOE</option>
+            <option value="IP">IP</option>
+            <option value="L2">L2</option>
+          </select>
         </div>
         <div class="field">
           <label for="vsiVlan">Vlan</label>
-          <input id="vsiVlan" type="text" placeholder="ex: 2026">
+          <input id="vsiVlan" type="text" placeholder="ex: 9000">
         </div>
       </div>
 
-      <div class="label-tag">
+      <div class="label-tag" id="vsiLabelTag">
         <div class="punch"></div>
-        <div class="out" id="vsiOut">
-          <span class="hl-tipo">CLT</span><span class="hl-mut">-</span><span class="hl-nome">NOME</span><span class="hl-mut">-</span><span class="hl-vlan">VLAN</span>
-        </div>
+        <div class="chips" id="vsiOut"></div>
         <button class="copy-btn" id="vsiCopy">Copiar</button>
+      </div>
+      <div class="note">Para <code>GER</code>, o campo Serviço não entra no nome.</div>
+    </div>
+
+    <div class="combo-table">
+      <div class="combo-row head">
+        <div class="c">Exemplo de nome</div>
+        <div class="c">Situação</div>
+      </div>
+      <div class="combo-row">
+        <div class="c"><span class="dono">CLT</span>-NOME-<span class="estado">RJ</span>-<span class="servico">PPPOE</span>-VLAN</div>
+        <div class="c">PPPoE do seu cliente, transportada entre OLT e concentrador/BNG</div>
+      </div>
+      <div class="combo-row">
+        <div class="c"><span class="dono">CLT</span>-NOME-<span class="estado">SP</span>-<span class="servico">L2</span>-VLAN</div>
+        <div class="c">VLAN do cliente transportada sem mexer no conteúdo (ex: interliga filiais)</div>
+      </div>
+      <div class="combo-row">
+        <div class="c"><span class="dono">CLT</span>-NOME-<span class="estado">ES</span>-<span class="servico">IP</span>-VLAN</div>
+        <div class="c">Link IP roteado, entregue direto a um cliente próprio</div>
+      </div>
+      <div class="combo-row">
+        <div class="c"><span class="dono">PARC</span>-NOME-<span class="estado">RJ</span>-<span class="servico">L2</span>-VLAN</div>
+        <div class="c">VLAN do parceiro só passando pela sua rede ("carona"), sem você mexer no conteúdo</div>
+      </div>
+      <div class="combo-row">
+        <div class="c"><span class="dono">PARC</span>-NOME-<span class="estado">RJ</span>-<span class="servico">PPPOE</span>-VLAN</div>
+        <div class="c">PPPoE de cliente do parceiro, você só transporta</div>
+      </div>
+      <div class="combo-row">
+        <div class="c"><span class="dono">GER</span>-NOME-<span class="estado">RJ</span>-VLAN</div>
+        <div class="c">Gerência e management da infraestrutura</div>
       </div>
     </div>
 
     <div class="cards">
       <div class="card">
         <div class="code">CLT</div>
-        <div class="desc">Cliente próprio — qualquer protocolo entregue direto ao cliente final (pppoe, ip, l2 dedicado).</div>
+        <div class="desc">Cliente próprio, qualquer serviço — inclusive transporte interno (OLT → concentrador).</div>
         <span class="badge ok"><span class="dot"></span>Pode mexer sozinho</span>
       </div>
       <div class="card">
         <div class="code">PARC</div>
-        <div class="desc">Tráfego de ou para outra operadora, mesmo que internamente seja pppoe/ip.</div>
+        <div class="desc">Tráfego de/para parceiro — você transporta, ele entrega.</div>
         <span class="badge warn"><span class="dot"></span>Alinhar com o parceiro</span>
       </div>
       <div class="card">
-        <div class="code">TRP</div>
-        <div class="desc">Transporte interno puro entre POPs do próprio backbone, sem cliente final na ponta.</div>
-        <span class="badge ok"><span class="dot"></span>Pode mexer sozinho</span>
-      </div>
-      <div class="card">
         <div class="code">GER</div>
-        <div class="desc">Gerência e management da própria infraestrutura.</div>
+        <div class="desc">Gerência e management (não usa serviço).</div>
         <span class="badge ok"><span class="dot"></span>Pode mexer sozinho</span>
       </div>
     </div>
@@ -379,17 +344,21 @@
 <section id="enlaces">
   <div class="wrap">
     <div class="section-head">
-      <div class="tag">02 · Enlaces de 100G</div>
+      <div class="tag">02 · Enlaces do backbone</div>
       <h2>Eth-Trunk e porta física</h2>
-      <p>Mesma description para o Eth-Trunk lógico e para cada porta membro — a própria interface já identifica se é trunk ou porta física.</p>
-    </div>
-
-    <div class="pattern-strip">
-      <span class="seg tipo">ENL100G</span><span class="sep">–</span><span class="seg nome">PONTA_A</span><span class="sep">–</span><span class="seg nome">PONTA_B</span><span class="sep">–</span><span class="seg vlan">TRUNKxx</span>
+      <p>Mesma description para o Eth-Trunk lógico e para cada porta membro. Vale para 10G, 40G e 100G.</p>
     </div>
 
     <div class="builder">
-      <div class="builder-grid">
+      <div class="builder-grid cols4">
+        <div class="field">
+          <label for="enlSpeed">Velocidade</label>
+          <select id="enlSpeed">
+            <option value="10G">10G</option>
+            <option value="40G">40G</option>
+            <option value="100G" selected>100G</option>
+          </select>
+        </div>
         <div class="field">
           <label for="enlA">Ponta A</label>
           <input id="enlA" type="text" placeholder="ex: IRAJA">
@@ -404,60 +373,104 @@
         </div>
       </div>
 
-      <div class="label-tag">
+      <div class="label-tag" id="enlLabelTag">
         <div class="punch"></div>
-        <div class="out" id="enlOut">
-          <span class="hl-tipo">ENL100G</span><span class="hl-mut">-</span><span class="hl-nome">PONTA_A</span><span class="hl-mut">-</span><span class="hl-nome">PONTA_B</span><span class="hl-mut">-</span><span class="hl-vlan">TRUNKxx</span>
-        </div>
+        <div class="chips" id="enlOut"></div>
         <button class="copy-btn" id="enlCopy">Copiar</button>
       </div>
     </div>
 
     <ul class="rules">
       <li><span class="n">01</span><span><strong>Pontas em ordem alfabética.</strong> Evita o mesmo link cadastrado com nomes diferentes em cada lado.</span></li>
-      <li><span class="n">02</span><span><strong>Número do trunk como diferenciador.</strong> Se houver mais de um link físico entre os mesmos dois sites, o <code>TRUNKxx</code> distingue cada um (ex: <code>TRUNK10</code>, <code>TRUNK20</code>).</span></li>
-      <li><span class="n">03</span><span><strong>Sem sufixo de porta.</strong> A porta membro usa a mesma description do Eth-Trunk — o próprio identificador da interface (ex: GE0/0/1) já mostra qual porta é.</span></li>
+      <li><span class="n">02</span><span><strong>Número do trunk como diferenciador.</strong> Se houver mais de um link físico entre os mesmos dois sites, o <code>TRUNKxx</code> distingue cada um.</span></li>
+      <li><span class="n">03</span><span><strong>Sem sufixo de porta.</strong> A porta membro usa a mesma description do Eth-Trunk — o próprio identificador da interface já mostra qual porta é.</span></li>
     </ul>
   </div>
 </section>
 
-<footer>
-  Padrão de nomenclatura · Rede MPLS
-</footer>
+<section id="portas">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="tag">03 · Description de porta física</div>
+      <h2>Dono + nome + modo</h2>
+      <p>Separado do nome da VSI: uma porta trunk pode entregar várias VSIs, e uma VSI pode sair em várias portas — misturar os dois nomes só complicaria.</p>
+    </div>
+
+    <div class="builder">
+      <div class="builder-grid">
+        <div class="field">
+          <label for="portaTipo">Dono</label>
+          <select id="portaTipo">
+            <option value="CLT">CLT — Cliente próprio</option>
+            <option value="PARC">PARC — Parceiro</option>
+            <option value="EQP">EQP — Equipamento de infra</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="portaNome">Nome</label>
+          <input id="portaNome" type="text" placeholder="ex: MADUREIRA ou OLT-IRAJA01">
+        </div>
+        <div class="field" id="portaModoField">
+          <label for="portaModo">Modo</label>
+          <select id="portaModo">
+            <option value="ACC">ACC — Acesso</option>
+            <option value="TRK">TRK — Trunk</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="label-tag" id="portaLabelTag">
+        <div class="punch"></div>
+        <div class="chips" id="portaOut"></div>
+        <button class="copy-btn" id="portaCopy">Copiar</button>
+      </div>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <div class="code">CLT</div>
+        <div class="desc">Porta que entrega o serviço direto na ponta do cliente próprio, em acesso ou trunk.</div>
+        <span class="badge ok"><span class="dot"></span>Pode mexer sozinho</span>
+      </div>
+      <div class="card">
+        <div class="code">PARC</div>
+        <div class="desc">Porta de interconexão física com outra operadora.</div>
+        <span class="badge warn"><span class="dot"></span>Alinhar com o parceiro</span>
+      </div>
+      <div class="card">
+        <div class="code">EQP</div>
+        <div class="desc">Porta que fala com OLT, Mikrotik, uplink de concentrador etc. Não usa modo.</div>
+        <span class="badge ok"><span class="dot"></span>Pode mexer sozinho</span>
+      </div>
+    </div>
+
+    <ul class="rules">
+      <li><span class="n">01</span><span><strong>Acesso vs trunk.</strong> <code>ACC</code> quando a porta entrega uma única VLAN pro cliente; <code>TRK</code> quando entrega mais de uma VSI na mesma porta.</span></li>
+      <li><span class="n">02</span><span><strong>EQP sem modo.</strong> Porta de OLT, Mikrotik ou outro equipamento normalmente já é trunk por natureza — não precisa repetir no nome.</span></li>
+      <li><span class="n">03</span><span><strong>Cliente ativado direto na porta, sem VSI.</strong> Mesmo padrão <code>CLT-NOME-MODO</code>.</span></li>
+    </ul>
+  </div>
+</section>
+
+<footer>Padrão de nomenclatura · Rede MPLS</footer>
 
 <script>
 function esc(s){ return (s||'').toString().trim(); }
 
-function updateVsi(){
-  const tipo = document.getElementById('vsiTipo').value;
-  const nome = esc(document.getElementById('vsiNome').value).toUpperCase().replace(/\s+/g,'-') || 'NOME';
-  const vlan = esc(document.getElementById('vsiVlan').value) || 'VLAN';
-  document.getElementById('vsiOut').innerHTML =
-    `<span class="hl-tipo">${tipo}</span><span class="hl-mut">-</span><span class="hl-nome">${nome}</span><span class="hl-mut">-</span><span class="hl-vlan">${vlan}</span>`;
+function renderChips(outId, wrapId, parts){
+  let html = '';
+  parts.forEach((p,i)=>{
+    if(i>0) html += '<div class="chip-sep">–</div>';
+    html += `<div class="chip"><div class="chip-box ${p.cls}">${p.v}</div><div class="chip-cap">${p.cap}</div></div>`;
+  });
+  document.getElementById(outId).innerHTML = html;
+  document.getElementById(wrapId).dataset.value = parts.map(p=>p.v).join('-');
 }
-['vsiTipo','vsiNome','vsiVlan'].forEach(id=>{
-  document.getElementById(id).addEventListener('input', updateVsi);
-  document.getElementById(id).addEventListener('change', updateVsi);
-});
 
-function updateEnl(){
-  let a = esc(document.getElementById('enlA').value).toUpperCase().replace(/\s+/g,'-') || 'PONTA_A';
-  let b = esc(document.getElementById('enlB').value).toUpperCase().replace(/\s+/g,'-') || 'PONTA_B';
-  const trunk = esc(document.getElementById('enlTrunk').value) || 'xx';
-  if(a !== 'PONTA_A' && b !== 'PONTA_B' && a.localeCompare(b) > 0){
-    [a,b] = [b,a];
-  }
-  document.getElementById('enlOut').innerHTML =
-    `<span class="hl-tipo">ENL100G</span><span class="hl-mut">-</span><span class="hl-nome">${a}</span><span class="hl-mut">-</span><span class="hl-nome">${b}</span><span class="hl-mut">-</span><span class="hl-vlan">TRUNK${trunk}</span>`;
-}
-['enlA','enlB','enlTrunk'].forEach(id=>{
-  document.getElementById(id).addEventListener('input', updateEnl);
-});
-
-function wireCopy(btnId, outId){
+function wireCopy(btnId, wrapId){
   const btn = document.getElementById(btnId);
   btn.addEventListener('click', ()=>{
-    const text = document.getElementById(outId).innerText;
+    const text = document.getElementById(wrapId).dataset.value || '';
     navigator.clipboard.writeText(text).then(()=>{
       btn.textContent = 'Copiado';
       btn.classList.add('copied');
@@ -465,8 +478,87 @@ function wireCopy(btnId, outId){
     });
   });
 }
-wireCopy('vsiCopy','vsiOut');
-wireCopy('enlCopy','enlOut');
+
+/* ---------- VSI ---------- */
+function updateVsi(){
+  const tipo = document.getElementById('vsiTipo').value;
+  const servicoField = document.getElementById('vsiServicoField');
+  const servicoSelect = document.getElementById('vsiServico');
+  const usesServico = (tipo === 'CLT' || tipo === 'PARC');
+  servicoField.classList.toggle('is-disabled', !usesServico);
+  servicoSelect.disabled = !usesServico;
+
+  const nome = esc(document.getElementById('vsiNome').value).toUpperCase().replace(/\s+/g,'-') || 'NOME';
+  const estado = document.getElementById('vsiEstado').value;
+  const vlan = esc(document.getElementById('vsiVlan').value) || 'VLAN';
+
+  const parts = [
+    {v:tipo, cls:'c-amber', cap:'dono'},
+    {v:nome, cls:'c-cyan', cap:'nome'},
+    {v:estado, cls:'c-blue', cap:'uf'}
+  ];
+  if(usesServico){ parts.push({v:servicoSelect.value, cls:'c-purple', cap:'serviço'}); }
+  parts.push({v:vlan, cls:'c-green', cap:'vlan'});
+
+  renderChips('vsiOut','vsiLabelTag', parts);
+}
+['vsiTipo','vsiServico','vsiNome','vsiEstado','vsiVlan'].forEach(id=>{
+  document.getElementById(id).addEventListener('input', updateVsi);
+  document.getElementById(id).addEventListener('change', updateVsi);
+});
+
+/* ---------- Enlaces ---------- */
+function updateEnl(){
+  const speed = document.getElementById('enlSpeed').value;
+  let a = esc(document.getElementById('enlA').value).toUpperCase().replace(/\s+/g,'-') || 'PONTA_A';
+  let b = esc(document.getElementById('enlB').value).toUpperCase().replace(/\s+/g,'-') || 'PONTA_B';
+  const trunk = esc(document.getElementById('enlTrunk').value) || 'xx';
+  if(a !== 'PONTA_A' && b !== 'PONTA_B' && a.localeCompare(b) > 0){ [a,b] = [b,a]; }
+
+  const parts = [
+    {v:'ENL'+speed, cls:'c-amber', cap:'link'},
+    {v:a, cls:'c-cyan', cap:'ponta a'},
+    {v:b, cls:'c-cyan', cap:'ponta b'},
+    {v:'TRUNK'+trunk, cls:'c-green', cap:'trunk'}
+  ];
+  renderChips('enlOut','enlLabelTag', parts);
+}
+['enlSpeed','enlA','enlB','enlTrunk'].forEach(id=>{
+  document.getElementById(id).addEventListener('input', updateEnl);
+  document.getElementById(id).addEventListener('change', updateEnl);
+});
+
+/* ---------- Portas ---------- */
+function updatePorta(){
+  const tipo = document.getElementById('portaTipo').value;
+  const modoField = document.getElementById('portaModoField');
+  const modoSelect = document.getElementById('portaModo');
+  const usesModo = (tipo === 'CLT' || tipo === 'PARC');
+  modoField.classList.toggle('is-disabled', !usesModo);
+  modoSelect.disabled = !usesModo;
+
+  const nome = esc(document.getElementById('portaNome').value).toUpperCase().replace(/\s+/g,'-') || 'NOME';
+
+  const parts = [
+    {v:tipo, cls:'c-amber', cap:'dono'},
+    {v:nome, cls:'c-cyan', cap:'nome'}
+  ];
+  if(usesModo){ parts.push({v:modoSelect.value, cls:'c-teal', cap:'modo'}); }
+
+  renderChips('portaOut','portaLabelTag', parts);
+}
+['portaTipo','portaModo','portaNome'].forEach(id=>{
+  document.getElementById(id).addEventListener('input', updatePorta);
+  document.getElementById(id).addEventListener('change', updatePorta);
+});
+
+wireCopy('vsiCopy','vsiLabelTag');
+wireCopy('enlCopy','enlLabelTag');
+wireCopy('portaCopy','portaLabelTag');
+
+updateVsi();
+updateEnl();
+updatePorta();
 </script>
 
 </body>
